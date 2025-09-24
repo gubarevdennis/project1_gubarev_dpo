@@ -1,14 +1,20 @@
 PYTHON = python3
 PIP = pip3
 
+project:
+	poetry run project
+
 install:
 	poetry install
 
 build:
-    poetry build
+	poetry build
 
 publish:
-    poetry publish --dry-run
+	poetry publish --dry-run
 
 package-install:
-    $(PIP) install dist/*.whl # Используем переменную PIP для большей гибкости
+	$(PIP) install dist/*.whl
+
+make lint:
+	poetry run ruff check .
