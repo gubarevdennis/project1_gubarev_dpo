@@ -11,10 +11,10 @@ def use_item(game_state, item_name):
                 print("Стало светлее.")
             case "sword":
                 print("Теперь вы чувствуете себя увереннее.")
-            case "bronze box":
-                if "rusty key" not in game_state['player_inventory']:
+            case "bronze_box":
+                if "rusty_key" not in game_state['player_inventory']:
                     print("Вы открываете шкатулку и находите ржавый ключ.")
-                    game_state['player_inventory'].append("rusty key")
+                    game_state['player_inventory'].append("rusty_key")
                 else:
                     print("Шкатулка пуста.")
             case _:
