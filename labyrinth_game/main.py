@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # labyrinth_game/main.py
 
-from labyrinth_game import constants
-from labyrinth_game import player_actions
-from labyrinth_game import utils
+from labyrinth_game import player_actions, utils
+
 
 # Обработка команд
 def process_command(game_state, command):
@@ -33,7 +32,8 @@ def process_command(game_state, command):
         case "use":
             # Проверка условия победы, если игрок в комнате с сокровищами
             if (
-                game_state['current_room'] == "treasure_room" and argument == "treasure_chest"
+                game_state['current_room'] == "treasure_room" 
+                    and argument == "treasure_chest"
             ):
                 utils.attempt_open_treasure(game_state)
             elif argument:

@@ -1,5 +1,6 @@
 # labyrinth_game/utils.py
 import math
+
 from labyrinth_game import constants, player_actions
 
 
@@ -17,7 +18,8 @@ def random_event(game_state):
                 if 'sword' in game_state['player_inventory']:
                     print("Вы обнажили меч и отпугнули существо.")
             case 2:
-                if game_state['current_room'] == 'trap_room' and 'torch' not in game_state['player_inventory']:
+                if (game_state['current_room'] == 'trap_room' and 
+                    'torch' not in game_state['player_inventory']):
                     print("Вы чувствуете опасность...")
                     trigger_trap(game_state)
 
@@ -25,7 +27,8 @@ def random_event(game_state):
 def trigger_trap(game_state):
     print("Ловушка активирована! Пол стал дрожать...")
     if game_state['player_inventory']:
-        index = pseudo_random(game_state['steps_taken'], len(game_state['player_inventory']))
+        index = pseudo_random(game_state['steps_taken'], 
+                              len(game_state['player_inventory']))
         lost_item = game_state['player_inventory'].pop(index)
         print(f"Вы потеряли: {lost_item}")
     else:
@@ -51,13 +54,15 @@ def attempt_open_treasure(game_state):
         print("Сундук уже открыт или отсутствует.")
         return
 
-    if 'treasure_key' in game_state['player_inventory'] or 'rusty_key' in game_state['player_inventory']:
+    if ('treasure_key' in game_state['player_inventory'] or 
+        'rusty_key' in game_state['player_inventory']):
         print("Вы применяете ключ, и замок щёлкает. Сундук открыт!")
         room['items'].remove('treasure_chest')
         print("В сундуке сокровище! Вы победили!")
         game_state['game_over'] = True
     else:
-        choice = player_actions.get_input("Сундук заперт. Хотите попробовать ввести код? (да/нет): ")
+        choice = player_actions.get_input("Сундук заперт. " \
+                            "Хотите попробовать ввести код? (да/нет): ")
         if choice.lower() == 'да':
             code = player_actions.get_input("Введите код: ")
             if room['puzzle'] and code.lower() == room['puzzle'][1].lower():
@@ -88,7 +93,9 @@ def solve_puzzle(game_state):
         '10': ['десять'],
     }
 
-    if answer.lower() == correct_answer.lower() or (correct_answer in alternative_answers and answer.lower() in alternative_answers[correct_answer]):
+    if (answer.lower() == correct_answer.lower() or 
+        (correct_answer in alternative_answers and 
+        answer.lower() in alternative_answers[correct_answer])):
         print("Верно!")
         room['puzzle'] = None  # Убираем загадку, чтобы нельзя было решить дважды
 

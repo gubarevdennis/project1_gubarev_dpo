@@ -1,7 +1,7 @@
 # labyrinth_game/player_actions.py
 
-from labyrinth_game import constants
-from labyrinth_game import utils
+from labyrinth_game import constants, utils
+
 
 # Юзаем предметы
 def use_item(game_state, item_name):
@@ -42,8 +42,10 @@ def move_player(game_state, direction):
 
         # Проверка на treasure_room и ключ
         if new_room == 'treasure_room':
-            if 'rusty_key' in game_state['player_inventory'] or 'treasure_key' in game_state['player_inventory']:
-                print("Вы используете найденный ключ, чтобы открыть путь в комнату сокровищ.")
+            if ('rusty_key' in game_state['player_inventory'] or 
+                'treasure_key' in game_state['player_inventory']):
+                print("Вы используете найденный ключ, " \
+                                "чтобы открыть путь в комнату сокровищ.")
                 game_state['current_room'] = new_room
                 game_state['steps_taken'] += 1
                 utils.describe_current_room(game_state)
