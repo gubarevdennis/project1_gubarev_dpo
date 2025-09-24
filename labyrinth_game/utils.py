@@ -1,5 +1,45 @@
 # labyrinth_game/utils.py
+import math
 from labyrinth_game import constants, player_actions
+
+# Случайности не случайны
+def random_event(game_state):
+    if pseudo_random(game_state['steps_taken'], 10) == 0:
+        event = pseudo_random(game_state['steps_taken'], 3)  # 3 - количество сценариев
+        match event:
+            case 0:
+                print("Вы нашли на полу монетку!")
+                current_room = game_state['current_room']
+                constants.ROOMS[current_room]['items'].append('coin')
+            case 1:
+                print("Вы слышите шорох...")
+                if 'sword' in game_state['player_inventory']:
+                    print("Вы обнажили меч и отпугнули существо.")
+            case 2:
+                if game_state['current_room'] == 'trap_room' and 'torch' not in game_state['player_inventory']:
+                    print("Вы чувствуете опасность...")
+                    trigger_trap(game_state)
+
+# Ловушки повсюду
+def trigger_trap(game_state):
+    print("Ловушка активирована! Пол стал дрожать...")
+    if game_state['player_inventory']:
+        index = pseudo_random(game_state['steps_taken'], len(game_state['player_inventory']))
+        lost_item = game_state['player_inventory'].pop(index)
+        print(f"Вы потеряли: {lost_item}")
+    else:
+        damage = pseudo_random(game_state['steps_taken'], 10)
+        if damage < 3:
+            print("Вы не смогли удержаться и упали в пропасть. Игра окончена!")
+            game_state['game_over'] = True
+        else:
+            print("Вам удалось удержаться! Вы получили легкий ушиб.")
+
+# Немного случайности в путешествии
+def pseudo_random(seed, modulo):
+    x = math.sin(seed * 12.9898) * 43758.5453
+    fractional_part = x - math.floor(x)
+    return int(fractional_part * modulo)
 
 # Условие победы
 def attempt_open_treasure(game_state):

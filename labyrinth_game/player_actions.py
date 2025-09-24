@@ -33,6 +33,7 @@ def move_player(game_state, direction):
         game_state['current_room'] = new_room
         game_state['steps_taken'] += 1
         utils.describe_current_room(game_state)
+        utils.random_event(game_state)  # Вызываем случайное событие
     else:
         print("Нельзя пойти в этом направлении.")
 
