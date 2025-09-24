@@ -1,7 +1,6 @@
 .venv/ 
-dist/
+dist
 
 utilite
 labyrinth_game/__pycache__
 .ruff_cache
-__init__.py
