@@ -11,10 +11,11 @@ def process_command(game_state, command):
     action = parts[0]
     argument = ' '.join(parts[1:]) if len(parts) > 1 else None
 
-def process_command(game_state, command):
-    parts = command.split()
-    action = parts[0]
-    argument = ' '.join(parts[1:]) if len(parts) > 1 else None
+    # Разрешаем движение по односложным командам (north, south, ...)
+    directions = ['north', 'south', 'east', 'west']
+    if action in directions:
+        argument = action
+        action = 'go'
 
     match action:
         case "look":
@@ -42,7 +43,10 @@ def process_command(game_state, command):
         case "inventory":
             player_actions.show_inventory(game_state)
         case "solve":
-            utils.solve_puzzle(game_state)
+            if game_state['current_room'] == 'treasure_room':
+                utils.attempt_open_treasure(game_state)
+            else:
+                utils.solve_puzzle(game_state)
         case "quit" | "exit":
             game_state['game_over'] = True
         case "help":
