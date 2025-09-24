@@ -11,7 +11,7 @@
 1. Установите Poetry, если у вас его еще нет:
 
     ```bash
-    curl -sSL https://install.python-poetry.org | python3 -
+    brew install poetry
     ```
 
 2. Установите зависимости проекта:
