@@ -5,10 +5,12 @@ from labyrinth_game import constants
 from labyrinth_game import player_actions
 from labyrinth_game import utils
 
+# Обработка команд
 def process_command(game_state, command):
     parts = command.split()
     action = parts[0]
     argument = ' '.join(parts[1:]) if len(parts) > 1 else None
+
 
     match action:
         case "look":
@@ -27,8 +29,6 @@ def process_command(game_state, command):
             player_actions.show_inventory(game_state)
         case "quit" | "exit":
             game_state['game_over'] = True
-        case "help":
-            utils.show_help()  # Добавим эту функцию позже
         case _:
             print("Неизвестная команда. Введите 'help' для списка команд.")
 
