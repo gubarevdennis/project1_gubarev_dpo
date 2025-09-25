@@ -3,11 +3,14 @@ import math
 
 from labyrinth_game import constants, player_actions
 
+EVENT_PROBABILITY = 10  # Вероятность случайного события
+TRAP_DAMAGE_THRESHOLD = 3  # Порог урона для ловушки
+COUNT_OF_SCENES = 3  # Количество сценариев для случайного события
 
 # Случайности не случайны
 def random_event(game_state):
     if pseudo_random(game_state['steps_taken'], 10) == 0:
-        event = pseudo_random(game_state['steps_taken'], 3)  # 3 - количество сценариев
+        event = pseudo_random(game_state['steps_taken'], COUNT_OF_SCENES)
         match event:
             case 0:
                 print("Вы нашли на полу монетку!")
@@ -32,8 +35,8 @@ def trigger_trap(game_state):
         lost_item = game_state['player_inventory'].pop(index)
         print(f"Вы потеряли: {lost_item}")
     else:
-        damage = pseudo_random(game_state['steps_taken'], 10)
-        if damage < 3:
+        damage = pseudo_random(game_state['steps_taken'], EVENT_PROBABILITY)
+        if damage < TRAP_DAMAGE_THRESHOLD:
             print("Вы не смогли удержаться и упали в пропасть. Игра окончена!")
             game_state['game_over'] = True
         else:

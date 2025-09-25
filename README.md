@@ -8,7 +8,7 @@
 
 ### С использованием Poetry
 
-1. Установите Poetry, если у вас его еще нет:
+1. Установите Poetry, если у вас его еще нет под вашу операционную систему:
 
     ```bash
     brew install poetry
@@ -42,3 +42,6 @@
     ```bash
     make project
     ```
+
+### Запись демо на asciinema
+[![asciicast](https://asciinema.org/a/yo9zxuxWnqfGqWlMX7VyFB6zR.svg)](https://asciinema.org/a/yo9zxuxWnqfGqWlMX7VyFB6zR)
