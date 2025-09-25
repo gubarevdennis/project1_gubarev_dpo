@@ -30,18 +30,17 @@
 
 ## Запуск
 
-### С использованием Poetry
-
-Запустите игру с помощью Poetry:
+1. Запустите игру с помощью Poetry:
 
     ```bash
     poetry run project
     ```
-Запустите игру с помощью Makefile:
+2. Запустите игру с помощью Makefile:
 
     ```bash
     make project
     ```
 
 ### Запись демо на asciinema
+
 [![asciicast](https://asciinema.org/a/yo9zxuxWnqfGqWlMX7VyFB6zR.svg)](https://asciinema.org/a/yo9zxuxWnqfGqWlMX7VyFB6zR)

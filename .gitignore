@@ -1,6 +1,4 @@
 .venv/ 
 dist
-
-utilite
 **/__pycache__
 .ruff_cache
