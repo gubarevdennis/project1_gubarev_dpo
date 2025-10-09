@@ -43,4 +43,4 @@
 
 ### Запись демо на asciinema
 
-[![asciicast](https://asciinema.org/a/yo9zxuxWnqfGqWlMX7VyFB6zR.svg)](https://asciinema.org/a/yo9zxuxWnqfGqWlMX7VyFB6zR)
+[![asciicast](https://asciinema.org/a/FvyJfCas5AooeIiNRqwtjuSyG.svg)](https://asciinema.org/a/FvyJfCas5AooeIiNRqwtjuSyG)
